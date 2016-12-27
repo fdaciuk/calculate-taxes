@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calcular juros</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-size: 15px;
+      font-family: sans-serif;
+    }
+
+    label {
+      display: block;
+    }
+
+    input {
+      border: 1px solid #ccc;
+      font-size: 15px;
+      padding: 5px;
+      width: 300px;
+    }
+
+    input:focus {
+      background: #efefef;
+    }
+
+    button {
+      background: #efefef;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+    }
+
+    div {
+      padding: 10px;
+    }
+
+    pre {
+      border: 1px solid #ccc;
+      background: #eee;
+      display: none;
+      font-family: Consolas, monospace;
+      line-height: 1.5;
+      padding: 20px 0;
+    }
+
+    .result-taxes {
+      color: red;
+      font-weight: 700;
+    }
+
+    .result-total {
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label for="value">Valor:</label>
+    <input id="value" autofocus>
+  </div>
+
+  <div>
+    <label for="installments">Quantidade de parcelas:</label>
+    <input id="installments">
+  </div>
+
+  <div>
+    <label for="percentage">Porcentagem de juros ao mês:</label>
+    <input id="percentage">
+  </div>
+
+  <div>
+    <button type="button" data-js="button">Calcular</button>
+  </div>
+
+  <div>
+    <pre data-js="result">
+      Valor: <span data-js="result-value">0</span>
+      Parcelas: <span data-js="result-installmentsQuantity"></span> vezes
+      Juros totais: <span class="result-taxes"><span data-js="result-taxesPercentage"></span>% (<span data-js="result-taxesValue"></span>)</span>
+      Valor da parcela: <span data-js="result-installmentValue"></span>
+      Total a pagar: <span data-js="result-totalToPay" class="result-total"></span></pre>
+  </div>
+
+  <script src="calculate-taxes.js"></script>
+  <script>
+    ;(function () {
+      function $ (el, context = document) {
+        return context.querySelector(el)
+      }
+
+      function $$ (el, context = document) {
+        return context.querySelectorAll(el)
+      }
+
+      const $value = $('#value')
+      const $installments = $('#installments')
+      const $percentage = $('#percentage')
+      const $button = $('[data-js="button"]')
+
+      const $result = $('[data-js="result"]')
+
+      $button.addEventListener('click', () => {
+        $result.style.display = 'block'
+        const totals = calculateTaxes({
+          value: $value.value,
+          installments: $installments.value,
+          percentage: $percentage.value
+        })
+
+        Object.keys(totals).forEach((value) => {
+          $(`span[data-js="result-${value}"]`).innerHTML = totals[value]
+        })
+      }, false)
+    })()
+  </script>
+</body>
+</html>
