@@ -8,7 +8,10 @@
     })
   }
 
-  function calculateTaxes ({ value = 0, installments = 1, percentage = 0 }) {
+  function calculateTaxes ({ value, installments, percentage }) {
+    value = value || 0
+    installments = installments || 1
+    percentage = percentage || 0
     const taxesPercentage = +percentage * +installments
     const total = +value + (+value * +taxesPercentage * 0.01)
 

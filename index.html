@@ -44,7 +44,6 @@
     pre {
       border: 1px solid #ccc;
       background: #eee;
-      display: none;
       font-family: Consolas, monospace;
       line-height: 1.5;
       padding: 20px 0;
@@ -82,11 +81,11 @@
 
   <div>
     <pre data-js="result">
-      Valor: <span data-js="result-value">0</span>
-      Parcelas: <span data-js="result-installmentsQuantity"></span> vezes
-      Juros totais: <span class="result-taxes"><span data-js="result-taxesPercentage"></span>% (<span data-js="result-taxesValue"></span>)</span>
-      Valor da parcela: <span data-js="result-installmentValue"></span>
-      Total a pagar: <span data-js="result-totalToPay" class="result-total"></span></pre>
+      Valor: <span data-js="result-value">R$0,00</span>
+      Parcelas: <span data-js="result-installmentsQuantity">1</span> vezes
+      Juros totais: <span class="result-taxes"><span data-js="result-taxesPercentage">0.00</span>% (<span data-js="result-taxesValue">R$0,00</span>)</span>
+      Valor da parcela: <span data-js="result-installmentValue">R$0,00</span>
+      Total a pagar: <span data-js="result-totalToPay" class="result-total">R$0,00</span></pre>
   </div>
 
   <script src="calculate-taxes.js"></script>
