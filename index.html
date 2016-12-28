@@ -41,6 +41,12 @@
       padding: 10px;
     }
 
+    .or-container {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+    }
+
     pre {
       border: 1px solid #ccc;
       background: #eee;
@@ -65,10 +71,23 @@
     <input id="value" autofocus>
   </div>
 
-  <div>
-    <label for="installments">Quantidade de parcelas:</label>
-    <input id="installments">
+  <hr>
+
+  <div class="or-container">
+    <div>
+      <label for="installments">Quantidade de parcelas:</label>
+      <input id="installments">
+    </div>
+
+    <div><i>ou</i></div>
+
+    <div>
+      <label for="installment-value">Valor da parcela:</label>
+      <input id="installment-value">
+    </div>
   </div>
+
+  <hr>
 
   <div>
     <label for="percentage">Porcentagem de juros ao mês:</label>
@@ -101,6 +120,7 @@
 
       const $value = $('#value')
       const $installments = $('#installments')
+      const $installmentValue = $('#installment-value')
       const $percentage = $('#percentage')
       const $button = $('[data-js="button"]')
 
@@ -111,6 +131,7 @@
         const totals = calculateTaxes({
           value: $value.value,
           installments: $installments.value,
+          installmentValue: $installmentValue.value,
           percentage: $percentage.value
         })
 
